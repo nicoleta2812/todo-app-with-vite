@@ -1,0 +1,206 @@
+/* :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+
+*{ 
+  font-family: "Josefin Sans", sans-serif;; 
+  font-size: 18px;
+  box-sizing: border-box;
+}
+
+html, body{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+header, 
+main{
+  max-width: 600px;
+  margin: 0 auto;
+}
+header {
+  padding: 55px 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+img{
+  max-width: 100%;
+}
+.row {
+  display: flex;
+  align-items: center;
+}
+.dark-design{
+  --bg-top-image: 0 0 url(./images/bg-desktop-dark.jpg) no-repeat;
+  --main-bg: hsl(235, 21%, 11%);
+  --todo-bg: hsl(235, 24%, 19%);
+  --font-color: hsl(234, 39%, 85%);
+  --font-color-hover: #fff;
+  }
+
+.light-design {
+  --bg-top-image: 0 0 url(./images/bg-desktop-light.jpg) no-repeat;
+  --main-bg: hsl(0, 0%, 98%);
+  --todo-bg: hsl(0, 0%, 98%);
+  --font-color: hsl(236, 9%, 61%);
+}
+
+body{
+  font: 400 18px "Josefin Sans", sans-serif;
+  background: var(--bg-top-image);    
+  background-color: var(--main-bg);
+  background-size: contain;
+  color: var(--font-color);
+}
+h1 {
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: #fff;
+  letter-spacing: 1rem;
+}
+.theme-block #theme {
+  display: none;
+}
+.theme-block #theme + label::before{
+  content: "";
+  background: url("./images/icon-sun.svg");
+  display: block;
+  width: 26px;
+  height: 26px;
+};
+.add-item{
+  height: 65px;
+  background: var(--todo-bg);
+  border-radius: 5px;
+  margin: 0 24px;
+  padding: 0 26px;
+}
+.content {
+  background: var(--todo-bg);
+  border-radius: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0; 
+  margin: 0;
+}
+ul li{
+  min-height: 65px;
+  border-bottom: 1px solid var(--font-color);
+  padding: 0 25px 0 15px;
+  position: relative;
+}
+ul li input[type="checkbox"]{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 0;
+  height: 0;    
+}
+
+ul li label {
+  cursor: pointer;
+  position: relative;
+  padding: 0 10px 0 30px;
+}
+.checkmark{
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  top: -5px;
+  left: -3px;
+}
+/* ul li.hidden{
+  display: none;
+} */
+ul li input[type="checkbox"] ~ .checkmark {
+  border: 1px solid var(--font-color);
+  border-radius: 50px;
+}
+ul li input[type="checkbox"] ~ .checkmark:hover {
+  border: 0;
+  padding: 1px;
+  background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+ul li input[type="checkbox"] ~ .checkmark:hover::before {
+  content: "";
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  /* background: var(--todo-bg); */
+  display:block;
+
+}
+ul li input[type="checkbox"]:checked ~ .checkmark{
+  background: center url(./images/icon-check.svg) no-repeat, linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%))
+  
+}
