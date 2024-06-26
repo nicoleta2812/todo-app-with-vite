@@ -66,141 +66,101 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
-*{ 
-  font-family: "Josefin Sans", sans-serif;; 
-  font-size: 18px;
+:root {
+  --VeryDarkBlue: hsl(235, 21%, 11%);
+  --VeryLightGrayishBlue: hsl(236, 33%, 92%);
+  --DarkGrayishBlue: hsl(234, 11%, 52%);
+  --white: #fff;
+}
+*{
+  padding: 0; 
+  margin: 0;
   box-sizing: border-box;
 }
-
-html, body{
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
+body{
+  background: var(--VeryLightGrayishBlue);
+  font-family: 'Josefin Sans', sans-serif;
 }
-
-header, 
-main{
-  max-width: 600px;
-  margin: 0 auto;
-}
-header {
-  padding: 55px 0 20px;
+header{
+  background: url("./assets/images/bg-desktop-dark.jpg") no-repeat  center center/cover;
+  min-height: 40vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  width: 500px;
+  transform: translateY(40%);
+}
+.header-content {
+ display:flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 30px;
+}
+
+.header-content h2{
+  font-size: 3rem;
+  letter-spacing: 1.5px;
+  color: var(--white);
 }
 img{
-  max-width: 100%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
-.row {
+
+form input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-family: sans-serif;
+}
+
+.container ul{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.container ul li{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--VeryLightGrayishBlue);
+  width: 100%;
+  padding: 10px 0;
+}
+.container ul li input[type="checkbox"]{
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+.container ul li div{
   display: flex;
   align-items: center;
 }
-.dark-design{
-  --bg-top-image: 0 0 url(./images/bg-desktop-dark.jpg) no-repeat;
-  --main-bg: hsl(235, 21%, 11%);
-  --todo-bg: hsl(235, 24%, 19%);
-  --font-color: hsl(234, 39%, 85%);
-  --font-color-hover: #fff;
-  }
 
-.light-design {
-  --bg-top-image: 0 0 url(./images/bg-desktop-light.jpg) no-repeat;
-  --main-bg: hsl(0, 0%, 98%);
-  --todo-bg: hsl(0, 0%, 98%);
-  --font-color: hsl(236, 9%, 61%);
+.container ul li:last-child{
+  border: none;
 }
 
-body{
-  font: 400 18px "Josefin Sans", sans-serif;
-  background: var(--bg-top-image);    
-  background-color: var(--main-bg);
-  background-size: contain;
-  color: var(--font-color);
-}
-h1 {
-  font-weight: 700;
-  font-size: 2.2rem;
-  color: #fff;
-  letter-spacing: 1rem;
-}
-.theme-block #theme {
-  display: none;
-}
-.theme-block #theme + label::before{
-  content: "";
-  background: url("./images/icon-sun.svg");
-  display: block;
-  width: 26px;
-  height: 26px;
-};
-.add-item{
-  height: 65px;
-  background: var(--todo-bg);
-  border-radius: 5px;
-  margin: 0 24px;
-  padding: 0 26px;
-}
-.content {
-  background: var(--todo-bg);
-  border-radius: 5px;
+.footer-items {
+  color: var(--DarkGrayishBlue);
 }
 
-ul {
-  list-style-type: none;
-  padding: 0; 
-  margin: 0;
+.footer-items .active-items{
+  padding: 0 5px;
 }
-ul li{
-  min-height: 65px;
-  border-bottom: 1px solid var(--font-color);
-  padding: 0 25px 0 15px;
-  position: relative;
-}
-ul li input[type="checkbox"]{
-  position: absolute;
-  opacity: 0;
+.clear {
   cursor: pointer;
-  width: 0;
-  height: 0;    
-}
-
-ul li label {
-  cursor: pointer;
-  position: relative;
-  padding: 0 10px 0 30px;
-}
-.checkmark{
-  position: absolute;
-  height: 25px;
-  width: 25px;
-  top: -5px;
-  left: -3px;
-}
-/* ul li.hidden{
-  display: none;
-} */
-ul li input[type="checkbox"] ~ .checkmark {
-  border: 1px solid var(--font-color);
-  border-radius: 50px;
-}
-ul li input[type="checkbox"] ~ .checkmark:hover {
-  border: 0;
-  padding: 1px;
-  background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-}
-
-ul li input[type="checkbox"] ~ .checkmark:hover::before {
-  content: "";
-  width: 23px;
-  height: 23px;
-  border-radius: 50%;
-  /* background: var(--todo-bg); */
-  display:block;
-
-}
-ul li input[type="checkbox"]:checked ~ .checkmark{
-  background: center url(./images/icon-check.svg) no-repeat, linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%))
-  
+  color: var(--VeryDarkBlue);
 }
