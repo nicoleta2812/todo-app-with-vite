@@ -1,17 +1,33 @@
 import crossImage from "../assets/images/icon-cross.svg"
+import { useState } from "react";
+
 function TodoList() {
+    const [task, setTask] = useState("");
+    
+    function handleTodo(event){
+        setTask(event.target.value);
+        console.log(task);
+    }
+    function handleSubmit(event){
+        event.preventDefault();
+        console.log(task);
+        setTask("");
+    }
     return <header>
-        <TodoItems/>
+        <TodoItems handleSubmit={handleSubmit} handleTodo={handleTodo} task={task} setTask={setTask}/>
     </header>
 }
-function TodoItems(){
+function TodoItems({ handleSubmit, handleTodo, task, setTask }){
+    
     return (
         <div className="container">
             <div className="header-content">
-                <h2>TODO</h2>
+                <h2>TODO hi</h2>
             </div>
-            <form action="">
-                <input type="text" placeholder="Create a New Todo" />
+            <form action="" onSubmit={handleSubmit}>
+                <input type="text" placeholder="Create a New Todo" 
+                value={task} 
+                onChange={handleTodo}/>
             </form>
             <ul>
                 <List />
