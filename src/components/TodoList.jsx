@@ -2,64 +2,54 @@ import crossImage from "../assets/images/icon-cross.svg"
 import { useState } from "react";
 
 function TodoList() {
+    const [todoList, setTodoList] = useState([])
     const [task, setTask] = useState("");
     
-    function handleTodo(event){
+    function handleChange(event){
         setTask(event.target.value);
         console.log(task);
     }
     function handleSubmit(event){
         event.preventDefault();
         console.log(task);
+        setTodoList([...todoList, task])
         setTask("");
     }
     return <header>
-        <TodoItems handleSubmit={handleSubmit} handleTodo={handleTodo} task={task} setTask={setTask}/>
+        <TodoItems handleSubmit={handleSubmit} handleChange={handleChange} task={task} setTask={setTask} todoList={todoList}/>
     </header>
 }
-function TodoItems({ handleSubmit, handleTodo, task, setTask }){
+function TodoItems({ handleSubmit, handleChange, task, setTask, todoList }){
     
     return (
         <div className="container">
             <div className="header-content">
-                <h2>TODO hi</h2>
+                <h2>TODO</h2>
             </div>
             <form action="" onSubmit={handleSubmit}>
                 <input type="text" placeholder="Create a New Todo" 
                 value={task} 
-                onChange={handleTodo}/>
+                onChange={handleChange}/>
             </form>
-            <ul>
-                <List />
+            <ul>{todoList.map((task) => { 
+                return (<List task={task} key={task} />)                
+            })}
+                
                 <FooterItems />
             </ul>
         </div>
     )
 }
-function List(){
+function List({ task }){
     return (
         <div>
-           <li>
-                    <div>
-                    <input type="checkbox" name="" id="" />
-                    <p>Todo 1</p>
+            <li>
+                <div>
+                    <input type="checkbox" name="" id="" value={task} />
+                    <p>{task}</p>
                     </div>
                     <img src={crossImage} alt="" />
-                </li>
-                <li>
-                    <div>
-                    <input type="checkbox" name="" id="" />
-                    <p>Todo 1</p>
-                    </div>
-                    <img src={crossImage} alt="" />
-                </li> 
-                <li>
-                    <div>
-                    <input type="checkbox" name="" id="" />
-                    <p>Todo 1</p>
-                    </div>
-                    <img src={crossImage} alt="" />
-                </li>                 
+                </li>            
         </div>
     )
 }
