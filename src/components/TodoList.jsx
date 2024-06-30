@@ -11,7 +11,7 @@ function TodoList() {
     }
     function handleSubmit(event){
         event.preventDefault();
-        console.log(task);
+        //console.log(task);
         setTodoList([...todoList, task])
         setTask("");
     }
