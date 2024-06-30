@@ -7,6 +7,7 @@ function TodoList() {
     
     function handleChange(event){
         setTask(event.target.value);
+        //console.log(task);
     }
     function handleSubmit(event){
         event.preventDefault();
