@@ -19,7 +19,7 @@ function TodoList() {
         <TodoItems handleSubmit={handleSubmit} handleChange={handleChange} task={task} setTask={setTask} todoList={todoList}/>
     </header>
 }
-function TodoItems({ handleSubmit, handleChange, task, setTask, todoList }){
+function TodoItems({ handleSubmit, handleChange, task, todoList }){
     
     return (
         <div className="container">
