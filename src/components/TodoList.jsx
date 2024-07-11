@@ -18,6 +18,7 @@ function TodoList() {
             id: Date.now()
         }
         console.log(task)
+        //console.log(task);
         setTodoList([...todoList, task])
         setNewTask("");
     }
