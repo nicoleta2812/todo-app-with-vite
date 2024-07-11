@@ -3,23 +3,32 @@ import { useState } from "react";
 
 function TodoList() {
     const [todoList, setTodoList] = useState([])
-    const [task, setTask] = useState("");
+    const [newTask, setNewTask] = useState("");
     
     function handleChange(event){
-        setTask(event.target.value);
-        //console.log(task);
+        setNewTask(event.target.value);
+        console.log(newTask);
     }
     function handleSubmit(event){
         event.preventDefault();
-        console.log(task);
+        console.log(newTask);
+        const task = {
+            taskName: newTask, 
+            checked: false,
+            id: Date.now()
+        }
+        console.log(task)
         setTodoList([...todoList, task])
-        setTask("");
+        setNewTask("");
+    }
+    function handleDelete(id){
+        setTodoList(todoList.filter((task) => task.id !== id))
     }
     return <header>
-        <TodoItems handleSubmit={handleSubmit} handleChange={handleChange} task={task} setTask={setTask} todoList={todoList}/>
+        <TodoItems handleSubmit={handleSubmit} handleChange={handleChange} newTask={newTask} setNewTask={setNewTask} todoList={todoList} handleDelete={handleDelete}/>
     </header>
 }
-function TodoItems({ handleSubmit, handleChange, task, todoList }){
+function TodoItems({ handleSubmit, handleChange, newTask, todoList, handleDelete }){
     
     return (
         <div className="container">
@@ -28,11 +37,11 @@ function TodoItems({ handleSubmit, handleChange, task, todoList }){
             </div>
             <form action="" onSubmit={handleSubmit}>
                 <input type="text" placeholder="Create a New Todo" 
-                value={task} 
+                value={newTask} 
                 onChange={handleChange}/>
             </form>
             <ul>{todoList.map((task) => { 
-                return (<List task={task} key={task} />)                
+                return (<List items={task.taskName} key={task.id} handleDelete={handleDelete} task = {task}/>)                
             })}
                 
                 <FooterItems />
@@ -40,15 +49,15 @@ function TodoItems({ handleSubmit, handleChange, task, todoList }){
         </div>
     )
 }
-function List({ task }){
+function List({ newTask, task, handleDelete }){
     return (
         <div>
             <li>
                 <div>
-                    <input type="checkbox" name="" id="" value={task} />
-                    <p>{task}</p>
+                    <input type="checkbox" name="" id="" value={newTask} />
+                    <p>{task.taskName}</p>
                     </div>
-                    <img src={crossImage} alt="" />
+                    <img src={crossImage} alt="" onClick={() => handleDelete(task.id)}/>
                 </li>            
         </div>
     )
