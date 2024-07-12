@@ -24,11 +24,20 @@ function TodoList() {
     function handleDelete(id){
         setTodoList(todoList.filter((task) => task.id !== id))
     }
+    function completeTask(id){
+        setTodoList(todoList.map((task) => {
+            if(task.id === id){
+                return {...task, checked: !task.checked}
+            } else {
+                return task
+            }
+        }))
+    }
     return <header>
-        <TodoItems handleSubmit={handleSubmit} handleChange={handleChange} newTask={newTask} setNewTask={setNewTask} todoList={todoList} handleDelete={handleDelete}/>
+        <TodoItems handleSubmit={handleSubmit} handleChange={handleChange} newTask={newTask} setNewTask={setNewTask} todoList={todoList} handleDelete={handleDelete} completeTask={completeTask}/>
     </header>
 }
-function TodoItems({ handleSubmit, handleChange, newTask, todoList, handleDelete }){
+function TodoItems({ handleSubmit, handleChange, newTask, todoList, handleDelete, completeTask }){
     
     return (
         <div className="container">
@@ -41,7 +50,7 @@ function TodoItems({ handleSubmit, handleChange, newTask, todoList, handleDelete
                 onChange={handleChange}/>
             </form>
             <ul>{todoList.map((task) => { 
-                return (<List items={task.taskName} key={task.id} handleDelete={handleDelete} task = {task}/>)                
+                return (<List items={task.taskName} key={task.id} handleDelete={handleDelete} task = {task} completeTask={completeTask}/>)                
             })}
                 
                 <FooterItems />
@@ -49,13 +58,14 @@ function TodoItems({ handleSubmit, handleChange, newTask, todoList, handleDelete
         </div>
     )
 }
-function List({ newTask, task, handleDelete }){
+function List({ newTask, task, handleDelete, completeTask }){
     return (
         <div>
             <li>
                 <div>
-                    <input type="checkbox" name="" id="" value={newTask} />
-                    <p>{task.taskName}</p>
+                    <input type="checkbox" name="" id="" value={newTask} onChange={() => completeTask(task.id)}/>
+                    <p style={task.checked ? {textDecoration: "line-through"} : {}}>
+                        {task.taskName}</p>
                     </div>
                     <img src={crossImage} alt="" onClick={() => handleDelete(task.id)}/>
                 </li>            
