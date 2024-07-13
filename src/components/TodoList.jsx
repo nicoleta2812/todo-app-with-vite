@@ -56,7 +56,7 @@ function TodoItems({ handleSubmit, handleChange, newTask, todoList, handleDelete
                 return (<List items={task.taskName} key={task.id} handleDelete={handleDelete} task = {task} completeTask={completeTask}/>)                
             })}
                 
-                <FooterItems clearList={clearList} />
+                <FooterItems clearList={clearList} todoList={todoList} />
             </ul>
         </div>
     )
@@ -75,12 +75,13 @@ function List({ newTask, task, handleDelete, completeTask }){
         </div>
     )
 }
-function FooterItems({ clearList }){
+function FooterItems({ clearList, todoList }){
+    let numberOfTasks = todoList.length;
     return (
         <div>
             <li className="footer-items">
                     <div className="left-items">
-                    <p>2 Items Left</p>                   
+                    <p>{numberOfTasks} Items Left</p>                   
                     </div>
                     <div className="active-items">
                     <p>0 Completed</p>                   
@@ -92,5 +93,4 @@ function FooterItems({ clearList }){
         </div>
     )
 }
-
 export default TodoList
