@@ -33,11 +33,14 @@ function TodoList() {
             }
         }))
     }
+    function clearList(){
+        setTodoList([])
+    }
     return <header>
-        <TodoItems handleSubmit={handleSubmit} handleChange={handleChange} newTask={newTask} setNewTask={setNewTask} todoList={todoList} handleDelete={handleDelete} completeTask={completeTask}/>
+        <TodoItems handleSubmit={handleSubmit} handleChange={handleChange} newTask={newTask} setNewTask={setNewTask} todoList={todoList} handleDelete={handleDelete} completeTask={completeTask} clearList={clearList}/>
     </header>
 }
-function TodoItems({ handleSubmit, handleChange, newTask, todoList, handleDelete, completeTask }){
+function TodoItems({ handleSubmit, handleChange, newTask, todoList, handleDelete, completeTask, clearList }){
     
     return (
         <div className="container">
@@ -53,7 +56,7 @@ function TodoItems({ handleSubmit, handleChange, newTask, todoList, handleDelete
                 return (<List items={task.taskName} key={task.id} handleDelete={handleDelete} task = {task} completeTask={completeTask}/>)                
             })}
                 
-                <FooterItems />
+                <FooterItems clearList={clearList} />
             </ul>
         </div>
     )
@@ -72,7 +75,7 @@ function List({ newTask, task, handleDelete, completeTask }){
         </div>
     )
 }
-function FooterItems(){
+function FooterItems({ clearList }){
     return (
         <div>
             <li className="footer-items">
@@ -83,7 +86,7 @@ function FooterItems(){
                     <p>0 Completed</p>                   
                     </div>
                     <div className="clear">
-                    <p>Clear Completed</p>                   
+                    <p onClick={clearList}>Clear Completed</p>                   
                     </div>                    
                 </li>
         </div>
