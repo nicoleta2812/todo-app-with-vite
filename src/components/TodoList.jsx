@@ -77,6 +77,7 @@ function List({ newTask, task, handleDelete, completeTask }){
 }
 function FooterItems({ clearList, todoList }){
     let numberOfTasks = todoList.length;
+    const completedTasks = todoList.filter((task) => task.checked).length;
     return (
         <div>
             <li className="footer-items">
@@ -84,7 +85,7 @@ function FooterItems({ clearList, todoList }){
                     <p>{numberOfTasks} Items Left</p>                   
                     </div>
                     <div className="active-items">
-                    <p>0 Completed</p>                   
+                    <p>{completedTasks} Completed</p>                   
                     </div>
                     <div className="clear">
                     <p onClick={clearList}>Clear Completed</p>                   
